@@ -12,5 +12,8 @@
   color: #fff;
   padding: 2px;
 }
+.wp-block-create-block-readmore > a {
+  color: white;
+}
 
 /*# sourceMappingURL=style-index.css.map*/

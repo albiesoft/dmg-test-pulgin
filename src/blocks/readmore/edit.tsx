@@ -1,34 +1,74 @@
-import React from 'react';
+import React, { FC, useState } from 'react';
+import { BlockEditProps } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
+import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
+import { PanelBody, ComboboxControl } from "@wordpress/components";
+import { useSelect } from "@wordpress/data";
+import { WP_REST_API_Post as Post } from 'wp-types';
 
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-import { useBlockProps } from '@wordpress/block-editor';
-
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
+import metadata from "./block.json";
 import './editor.scss';
 
-/**
- * The edit function describes the structure of your block in the context of the
- * editor. This represents what the editor will render when the block is used.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#edit
- *
- * @return {Element} Element to render.
- */
-export default function Edit() {
-	return (
-		<p { ...useBlockProps() }>
-			{ __( 'Readmore – hello from the editor!', 'readmore' ) }
-		</p>
-	);
+interface Attributes {
+	title?: string;
+	link?: string;
 }
+
+const Edit: FC<BlockEditProps<Attributes>> = ({
+	attributes,
+	setAttributes
+}) => {
+	const [ selected, setSelected ] = useState<any>();
+	const [ search, setSearch] = useState<string>('');
+	
+	const blockProps = useBlockProps( {
+		className: 'dmg-read-more',
+	} );
+
+	const { posts } = useSelect((select: any) => ({
+		posts: select('core').getEntityRecords("postType", "post", {
+			per_page: 10,
+			order: "desc",
+			order_by: "date",
+			search
+		}) ?? [],
+	}), [search]);
+
+	const options = posts?.map((post: Post) => ({
+		value: post.id,
+		label: post.title.rendered,
+	}));
+
+	const handleOnChange = (value: string | null) => {
+		if (value) {
+			const post = posts.find((post: Post) => post.id == parseInt(value, 10));
+			setAttributes({
+				title: post.title.rendered,
+				link: post.link,
+			});
+	
+			setSelected(value);
+		}
+	};
+
+	return (
+		<>
+			<p { ...blockProps }>
+				{ __( 'Read More: ', metadata.textdomain ) } <a href={ attributes.link }>{ attributes.title }</a>
+			</p>
+			<InspectorControls>
+				<PanelBody title={ __( "DMG Read More", metadata.textdomain ) }>
+					<ComboboxControl
+						label="Select Post"
+            value={ selected }
+            onChange={ handleOnChange }
+            options={  options }
+            onFilterValueChange={ ( inputValue ) => setSearch(inputValue) }
+					/>
+				</PanelBody>
+			</InspectorControls>
+		</>
+	);
+};
+
+export default Edit;

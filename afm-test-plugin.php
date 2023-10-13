@@ -21,4 +21,8 @@ function afm_cli_register_commands() {
 add_action( 'cli_init', 'afm_cli_register_commands' );
 
 
-register_block_type(__DIR__ . '/build/blocks/readmore');
+function afm_custom_block_init() {
+  register_block_type(__DIR__ . '/build/blocks/readmore');
+}
+
+add_action('init', 'afm_custom_block_init');

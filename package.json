@@ -25,6 +25,7 @@
     "@types/wordpress__blocks": "^12.5.6",
     "@wordpress/scripts": "^26.14.0",
     "ts-loader": "^9.5.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "wp-types": "^3.63.0"
   }
 }

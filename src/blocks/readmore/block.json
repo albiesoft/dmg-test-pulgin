@@ -1,19 +1,28 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "create-block/readmore",
+	"name": "dmg/readmore",
 	"version": "0.1.0",
-	"title": "Readmore",
-	"category": "widgets",
+	"title": "DMG Read More",
+	"category": "text",
 	"icon": "smiley",
-	"description": "Example block scaffolded with Create Block tool.",
+	"description": "A block to link to specific post",
 	"example": {},
 	"supports": {
 		"html": false
 	},
-	"textdomain": "readmore",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"link": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"textdomain": "dmg-readmore",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
-	"style": "file:./style-index.css",
-	"viewScript": "file:./view.js"
+	"style": "file:./style-index.css"
 }

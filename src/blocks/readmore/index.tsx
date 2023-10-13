@@ -18,10 +18,10 @@ import './style.scss';
  * Internal dependencies
  */
 import Edit from './edit';
-import save from './save';
+import Save from './save';
 import metadata from './block.json';
 
 registerBlockType( metadata.name, {
 	edit: Edit,
-	save,
+	save: Save,
 } as any );
