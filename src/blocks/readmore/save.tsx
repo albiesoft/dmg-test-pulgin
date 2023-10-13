@@ -7,6 +7,7 @@ import metadata from "./block.json";
 interface Attributes {
 	title?: string;
 	link?: string;
+	postID?: string;
 }
 
 const Save: FC<BlockSaveProps<Attributes>> = ({ attributes }) => {

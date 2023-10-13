@@ -33,7 +33,7 @@ const Edit = ({
   attributes,
   setAttributes
 }) => {
-  const [selected, setSelected] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
+  const [selected, setSelected] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(attributes.postID);
   const [search, setSearch] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
     className: 'dmg-read-more'
@@ -52,7 +52,7 @@ const Edit = ({
     };
   }, [search]);
   const options = posts?.map(post => ({
-    value: post.id,
+    value: `${post.id}`,
     label: post.title.rendered
   }));
   const handleOnChange = value => {
@@ -60,7 +60,8 @@ const Edit = ({
       const post = posts.find(post => post.id == parseInt(value, 10));
       setAttributes({
         title: post.title.rendered,
-        link: post.link
+        link: post.link,
+        postID: `${value}`
       });
       setSelected(value);
     }
@@ -96,20 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/blocks/readmore/edit.tsx");
 /* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/blocks/readmore/save.tsx");
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/blocks/readmore/block.json");
-/**
- * Registers a new block provided a unique name and an object defining its behavior.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
- */
 
-
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * All files containing `style` keyword are bundled together. The code used
- * gets applied both to the front of your site and to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
 
 
 /**
@@ -249,7 +237,7 @@ module.exports = window["wp"]["i18n"];
   \****************************************/
 /***/ (function(module) {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"dmg/readmore","version":"0.1.0","title":"DMG Read More","category":"text","icon":"smiley","description":"A block to link to specific post","example":{},"supports":{"html":false},"attributes":{"title":{"type":"string","default":""},"link":{"type":"string","default":""}},"textdomain":"dmg-readmore","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"dmg/readmore","version":"0.1.0","title":"DMG Read More","category":"text","icon":"smiley","description":"A block to link to specific post","example":{},"supports":{"html":false,"color":{"background":true,"text":true,"link":true,"gradients":false,"enableContrastChecker":true}},"attributes":{"postID":{"type":"string","default":""},"title":{"type":"string","default":""},"link":{"type":"string","default":""},"style":{"type":"object","default":{"color":{"text":"#000","link":"#000"}}}},"textdomain":"dmg-readmore","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css"}');
 
 /***/ })
 

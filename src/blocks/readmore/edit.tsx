@@ -10,6 +10,7 @@ import metadata from "./block.json";
 import './editor.scss';
 
 interface Attributes {
+	postID?: string;
 	title?: string;
 	link?: string;
 }
@@ -18,7 +19,7 @@ const Edit: FC<BlockEditProps<Attributes>> = ({
 	attributes,
 	setAttributes
 }) => {
-	const [ selected, setSelected ] = useState<any>();
+	const [ selected, setSelected ] = useState<any>(attributes.postID);
 	const [ search, setSearch] = useState<string>('');
 	
 	const blockProps = useBlockProps( {
@@ -30,12 +31,12 @@ const Edit: FC<BlockEditProps<Attributes>> = ({
 			per_page: 10,
 			order: "desc",
 			order_by: "date",
-			search
+			search,
 		}) ?? [],
 	}), [search]);
 
 	const options = posts?.map((post: Post) => ({
-		value: post.id,
+		value: `${post.id}`,
 		label: post.title.rendered,
 	}));
 
@@ -45,6 +46,7 @@ const Edit: FC<BlockEditProps<Attributes>> = ({
 			setAttributes({
 				title: post.title.rendered,
 				link: post.link,
+				postID: `${value}`,
 			});
 	
 			setSelected(value);

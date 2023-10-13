@@ -9,9 +9,20 @@
   "description": "A block to link to specific post",
   "example": {},
   "supports": {
-    "html": false
+    "html": false,
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": false,
+      "enableContrastChecker": true
+    }
   },
   "attributes": {
+    "postID": {
+      "type": "string",
+      "default": ""
+    },
     "title": {
       "type": "string",
       "default": ""
@@ -19,6 +30,15 @@
     "link": {
       "type": "string",
       "default": ""
+    },
+    "style": {
+      "type": "object",
+      "default": {
+        "color": {
+          "text": "#000",
+          "link": "#000"
+        }
+      }
     }
   },
   "textdomain": "dmg-readmore",
