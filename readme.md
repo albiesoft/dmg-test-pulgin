@@ -1,8 +1,4 @@
-github profile markdown generator logo
-GitHub Profile README Generator
-Star this repo17582
-Fork on GitHub5130
-<h1 align="center">Hi 👋, I'm Albert Fernandez</h1>
+<h1 align="center">Hi 👋, I'm Albert Fernandez Moles</h1>
 <h3 align="center">A passionate full stack developer</h3>
 <p align="left">I love working with React, Typescript, Wordpress, etc...</p>
 <p align="left">I am currently learning Rust and extending my Python skills by doing some ML and NLP.</p>
@@ -13,6 +9,7 @@ Fork on GitHub5130
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
+<a href="https://linkedin.com/in/albiesoft" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="albiesoft" height="30" width="40" /></a>
 </p>
 
 <h3 align="left">Languages and Tools:</h3>
