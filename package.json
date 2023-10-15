@@ -21,8 +21,12 @@
   "author": "Albert Fernandez",
   "license": "ISC",
   "devDependencies": {
+    "@testing-library/react": "^14.0.0",
+    "@types/jest": "^29.5.5",
     "@types/wordpress__block-editor": "^11.5.5",
     "@types/wordpress__blocks": "^12.5.6",
+    "@wordpress/block-editor": "^12.11.1",
+    "@wordpress/components": "^25.9.1",
     "@wordpress/scripts": "^26.14.0",
     "ts-loader": "^9.5.0",
     "typescript": "^5.2.2",

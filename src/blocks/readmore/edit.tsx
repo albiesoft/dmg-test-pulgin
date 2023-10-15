@@ -40,7 +40,7 @@ const Edit: FC<BlockEditProps<Attributes>> = ({
 		label: post.title.rendered,
 	}));
 
-	const handleOnChange = (value: string | null) => {
+	const handleOnChange = (value?: string | null) => {
 		if (value) {
 			const post = posts.find((post: Post) => post.id == parseInt(value, 10));
 			setAttributes({
